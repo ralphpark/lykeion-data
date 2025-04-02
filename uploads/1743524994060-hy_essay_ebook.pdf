@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style data-vite-theme="" data-inject-first="">:root {
+      --background: 0 0% 100%;
+--foreground: 20 14.3% 4.1%;
+--muted: 60 4.8% 95.9%;
+--muted-foreground: 25 5.3% 44.7%;
+--popover: 0 0% 100%;
+--popover-foreground: 20 14.3% 4.1%;
+--card: 0 0% 100%;
+--card-foreground: 20 14.3% 4.1%;
+--border: 20 5.9% 90%;
+--input: 20 5.9% 90%;
+--primary: 263 52% 37%;
+--primary-foreground: 253 36% 98%;
+--secondary: 60 4.8% 95.9%;
+--secondary-foreground: 24 9.8% 10%;
+--accent: 60 4.8% 95.9%;
+--accent-foreground: 24 9.8% 10%;
+--destructive: 0 84.2% 60.2%;
+--destructive-foreground: 60 9.1% 97.8%;
+--ring: 20 14.3% 4.1%;
+--radius: 0.75rem;
+  }
+  .dark {
+      --background: 240 10% 3.9%;
+--foreground: 0 0% 98%;
+--muted: 240 3.7% 15.9%;
+--muted-foreground: 240 5% 64.9%;
+--popover: 240 10% 3.9%;
+--popover-foreground: 0 0% 98%;
+--card: 240 10% 3.9%;
+--card-foreground: 0 0% 98%;
+--border: 240 3.7% 15.9%;
+--input: 240 3.7% 15.9%;
+--primary: 263 52% 37%;
+--primary-foreground: 253 36% 98%;
+--secondary: 240 3.7% 15.9%;
+--secondary-foreground: 0 0% 98%;
+--accent: 240 3.7% 15.9%;
+--accent-foreground: 0 0% 98%;
+--destructive: 0 62.8% 30.6%;
+--destructive-foreground: 0 0% 98%;
+--ring: 240 4.9% 83.9%;
+--radius: 0.75rem;
+  }</style>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5, user-scalable=yes, viewport-fit=cover, height=device-height" />
+    <!-- 모바일 브라우저 호환성 태그 -->
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="MobileOptimized" content="width" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="format-detection" content="telephone=no" />
+    <!-- CKEditor CDN -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/decoupled-document/ckeditor.js"></script>
+    <!-- Channel Plugin Scripts -->
+    <script>
+      (function() {
+        var w = window;
+        if (w.ChannelIO) {
+          return;
+        }
+        var ch = function() {
+          ch.c(arguments);
+        };
+        ch.q = [];
+        ch.c = function(args) {
+          ch.q.push(args);
+        };
+        w.ChannelIO = ch;
+
+        function l() {
+          var s = document.createElement('script');
+          s.type = 'text/javascript';
+          s.async = true;
+          s.src = 'https://cdn.channel.io/plugin/ch-plugin-web.js';
+          s.charset = 'UTF-8';
+          var x = document.getElementsByTagName('script')[0];
+          if (x) {
+            x.parentNode.insertBefore(s, x);
+          } else {
+            document.head.appendChild(s);
+          }
+
+          // 스크립트 로드가 완료되면 이벤트 발생
+          s.onload = function() {
+            var event = new Event('channelio_loaded');
+            w.dispatchEvent(event);
+          };
+        }
+
+        if (document.readyState === 'complete') {
+          l();
+        } else {
+          w.addEventListener('load', l);
+        }
+      })();
+    </script>
+    <style>
+      /* CKEditor 이미지 스타일 */
+      .image-style-align-left {
+        float: left;
+        margin-right: 20px;
+        max-width: 50%;
+      }
+      .image-style-align-right {
+        float: right;
+        margin-left: 20px;
+        max-width: 50%;
+      }
+      .image-style-align-center {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        max-width: 100%;
+      }
+
+      /* 새로운 이미지 스타일 */
+      .image-style-block {
+        display: block;
+        margin: 1em auto;
+        max-width: 100%;
+      }
+
+      .image-style-inline {
+        display: inline-block;
+        margin: 0 0.5em;
+        vertical-align: bottom;
+      }
+
+      .image-style-side {
+        float: right;
+        margin-left: 1.5em;
+        max-width: 50%;
+      }
+
+      /* CKEditor figure 스타일 */
+      figure.image {
+        display: block;
+        margin: 1em auto;
+        max-width: 100% !important;
+        text-align: center;
+      }
+
+      figure.image img {
+        display: block;
+        margin: 0 auto;
+        max-width: 100%;
+        height: auto !important;
+      }
+
+      figure.image figcaption {
+        margin-top: 0.5em;
+        text-align: center;
+        color: #666;
+        font-size: 0.9em;
+      }
+
+      /* 이미지 정렬 스타일 */
+      figure.image-style-align-left,
+      figure.image-style-align-right,
+      figure.image-style-side {
+        max-width: 50%;
+        margin: 1em 0;
+      }
+
+      figure.image-style-align-left {
+        float: left;
+        margin-right: 1.5em;
+      }
+
+      figure.image-style-align-right {
+        float: right;
+        margin-left: 1.5em;
+      }
+
+      /* CKEditor 컨텐츠 영역 스타일 */
+      .ck-editor__editable {
+        min-height: 500px;
+        height: auto !important;
+        overflow: visible !important;
+        padding: 1em !important;
+      }
+
+      /* CKEditor 툴바 스타일 */
+      .ck-toolbar {
+        display: flex !important;
+        justify-content: space-between !important;
+        padding: 0.5rem !important;
+        width: 100% !important;
+      }
+
+      .ck-toolbar__items {
+        display: flex !important;
+        gap: 0.5rem !important;
+        flex: 1 !important;
+        justify-content: flex-start !important;
+      }
+
+      /* CKEditor Heading 스타일 */
+      .ck-heading_heading1 {
+        font-size: 2em !important;
+        font-weight: bold !important;
+      }
+
+      .ck-heading_heading2 {
+        font-size: 1.5em !important;
+        font-weight: bold !important;
+      }
+
+      .ck-heading_heading3 {
+        font-size: 1.17em !important;
+        font-weight: bold !important;
+      }
+
+      /* 이용안내 컨텐츠 스타일 */
+      .guide-content {
+        height: auto !important;
+        min-height: 200px;
+        overflow: visible !important;
+        padding: 20px;
+        line-height: 1.6;
+      }
+
+      .guide-content img {
+        max-width: 100%;
+        height: auto !important;
+        width: auto !important;
+        display: block;
+        margin: 1em auto;
+      }
+
+      .guide-content p {
+        margin: 1em 0;
+        min-height: 1.6em;
+        clear: both;
+      }
+
+      .guide-content:after {
+        content: '';
+        display: table;
+        clear: both;
+      }
+
+      /* Card 스타일 오버라이드 */
+      .h-auto {
+        height: auto !important;
+        min-height: 0 !important;
+      }
+
+      /* Prose 스타일 조정 */
+      .prose {
+        max-width: none !important;
+        width: 100% !important;
+      }
+
+      .prose img {
+        display: block;
+        margin: 1em auto;
+        max-width: 100%;
+        height: auto !important;
+        width: auto !important;
+      }
+
+      .prose p {
+        margin: 1em 0;
+        clear: both;
+      }
+
+      /* 이미지 플로팅 해제 */
+      .ck-content::after {
+        content: '';
+        display: table;
+        clear: both;
+      }
+      
+      /* 안드로이드 모바일 최적화 스타일 */
+      @media screen and (max-width: 768px) {
+        html, body {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          overflow-x: hidden;
+          -webkit-overflow-scrolling: touch;
+          overscroll-behavior-y: contain;
+          touch-action: manipulation;
+          -webkit-tap-highlight-color: rgba(0,0,0,0);
+        }
+        
+        * {
+          backface-visibility: hidden;
+        }
+        
+        select, input, textarea, button {
+          font-size: 16px !important; /* 안드로이드에서 자동 확대 방지 */
+        }
+        
+        .dialog-content, .sheet-content {
+          transform: translate3d(0,0,0);
+          max-height: 100vh !important;
+          max-width: 95vw !important;
+          touch-action: pan-y;
+        }
+        
+        /* 모바일에서 클릭 지연 제거 */
+        a, button, [role="button"], input, select, textarea {
+          touch-action: manipulation;
+        }
+      }
+    </style>
+    <script type="module" crossorigin src="/assets/index-mkK8uO7k.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BKpvr0n3.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
